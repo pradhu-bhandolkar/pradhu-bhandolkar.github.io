@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Javascript-Android Communication</title>
+  </head>
+	  <body>
+		  		  <a href="https://halodoc.onelink.me/P71V/962abafe">Corona doctor test</a>
+		  <a href="https://halodoc.onelink.me/cQvV/1285e06">Contact doctor test</a>
+		  <a href="https://www.halodoc.com/contactdoctor/search?search_keyword=gene">Contact doctor - gp</a>
+		  <a href="https://www.halodoc.com/apotikantar">PD home screen</a>
+		  <a href="https://www.halodoc.com/apotikantar/search?search_keyword=panadaol">Search panadol</a>
+		  <a href="https://halodoc.onelink.me/P71V/458302a8">Contact doctor - naga</a>
+		  <a href="https://www.halodoc.com/labs">Labs</a>
+		  <a href="https://www.halodoc.com/rumah-sakit">Hospital Directories</a>
+		  <a href="https://www.halodoc.com/rumah-sakit/terdekat">Recommended hospitals</a>
+		  <a href="https://www.halodoc.com/rumah-sakit/nama/halodoc-jakarta">Hospital details</a>
+		  <a href="https://www.halodoc.com/cari-dokter/nama/vishnu-vardhan">Doctor details</a>
+		  <br><a href="https://play.google.com/store/apps/details?id=com.linkdokter.halodoc.android">Playstore</a>
+		  <br><a href="https://web.stage.halodoc.com/subscription/">Gojek</a>
+		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_apotikantar&c=test_apotikantar&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fapotikantar&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External PD</a>
+		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_contactdoctor&c=test_contactdoctor&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fcontactdoctor&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External TC</a>
+		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_labs&c=test_labs&af_dp=https%3A%2F%2Fwww.halodoc.com%2Flabs&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External Labs</a>
+<a href="intent://scan/#Intent;scheme=halodoc;package=com.linkdokter.halodoc.android;end"> Take a QR code </a>
+		  <br><a href="https://shorturl.at/hjNU0">Short URL</a>
+		  <br><a href="https://bit.ly/3bcnxGV">High Risk</a>
+		  		  <br><a href="https://web.stage.halodoc.com/tanya-dokter/cari?query=covid-19">Tanya dokter</a>
+		  <br><a href="https://bit.ly/33xOpi4">Mid risk</a>
+	    <script type="text/javascript">
+	    function showAndroidToast(toast) {
+	    	console.log("showAndroidToast");
+	    	let request = {
+	    		request_id : "1234",
+	    		request_body : {
+	    			request_code: "user_profile.get_info",
+				data : {
+					raj: "Moolya",
+					shekhar: "testing"
+				}
+	    		},
+	    		callback : "JSMethodToSendResponse"
+	    	}
+	    	let json = JSON.stringify(request)
+	    	console.log(json);
+	        JSToNativeBridge.callToNative(json);
+	    }
+	    function JSMethodToSendResponse(response){
+	    	let json = JSON.stringify(response)
+	    	console.log(json);
+	    }
+		</script>
+		<form>
+			<input type="button" value="Click me!" onclick="showAndroidToast('Hello Android!')" />
+		</form>
+		</body>
+</html>
