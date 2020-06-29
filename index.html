@@ -24,28 +24,12 @@
 		  <br><a href="https://bit.ly/3bcnxGV">High Risk</a>
 		  <br><a href="https://web.stage.halodoc.com/tanya-dokter/cari?query=covid-19">Tanya dokter</a>
 		  <br><a href="https://bit.ly/33xOpi4">Mid risk</a>
-		  <button onclick="showAndroidToast()">Another Try</button>
+		  <button onclick="alertBox()">Try it</button>
 	    <script type="text/javascript">
-	    function showAndroidToast() {
-	    	console.log("showAndroidToast");
-	    	let request = {
-   							"request_id":"1234",
-   							"request_body":{
-      						"request_code" : "user_profile.get_info"
-      						"data": {
-      					}
-   			},
-   			"callback":"JSMethodToSendResponse" //Callback code, where the response comes in
-		}
-	    	let json = JSON.stringify(request)
-	    	console.log(json);
-	    	alert(json);
-	        JSToNativeBridge.callToNative(json);
-	    }
-	    function JSMethodToSendResponse(response){
-	    	let json = JSON.stringify(response)
-	    	console.log(json);
-	    }
+	    function alertBox(){
+	    	alert("I am alert box");
+	    }	
+	    
 		</script>
 		<form>
 			<input type="button" value="Click me!" onclick="showAndroidToast()" />
