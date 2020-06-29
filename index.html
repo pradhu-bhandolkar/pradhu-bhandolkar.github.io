@@ -55,7 +55,9 @@
                 var jsonResponse = null;
                 if (typeof response === 'string') {
                     jsonResponse = JSON.parse(response);
+               		alert("response is string")
                 } else {
+                	alert("response is not string")
                     jsonResponse = response;
                 }
 
