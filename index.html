@@ -40,15 +40,51 @@
       						"data": {
       							      					}
    			},
-   			"callback":"JSMethodToSendResponse" //Callback code, where the response comes in
+   			"callback":"userProfileCallback" //Callback code, where the response comes in
 		}
 	    	var profileRequest = JSON.stringify(request)
 	    	console.log(profileRequest);
-	    	alert(profileRequest);
+	    	// alert(profileRequest);
 	        JSToNativeBridge.callToNative(profileRequest);
 	    }
 	</script>
 	<script type="text/javascript">
+ function userProfileCallback(response) {
+            console.log(JSON.stringify(response));
+            try {
+                var jsonResponse = null;
+                if (typeof response === 'string') {
+                    jsonResponse = JSON.parse(response);
+                } else {
+                    jsonResponse = response;
+                }
+
+                var profileResponse = {};
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.profile || null;
+                    if (profileData) {
+                        profileResponse['data'] = profileData;
+                        userProfile = profileResponse;
+                    }
+                }
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var errorResponse = jsonResponse && jsonResponse.error || null;
+                    if (errorResponse) {
+                        profileResponse['error'] = errorResponse;
+                        userProfile = null;
+                    }
+                }
+                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                    requestHistory[jsonResponse.request_id](profileResponse);
+                }
+            } catch (error) {
+                userProfile = null;
+            }
+            alert('userProfileCallback:' + JSON.stringify(profileResponse));
+        }
+
 	    function JSMethodToSendResponse(response){
 	    	let json = JSON.stringify(response)
 	    	alert(json);
