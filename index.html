@@ -36,16 +36,16 @@
 	    	let request = {
    							"request_id":"1234",
    							"request_body":{
-      						"request_code" : "user_profile.get_info",
+      						"request_code" : "app_locale.get_locale",
       						"data": {
       							      					}
    			},
    			"callback":"JSMethodToSendResponse" //Callback code, where the response comes in
 		}
-	    	let json = JSON.stringify(request)
-	    	console.log(json);
-	    	alert(json);
-	        JSToNativeBridge.callToNative(json);
+	    	var profileRequest = JSON.stringify(request)
+	    	console.log(profileRequest);
+	    	alert(profileRequest);
+	        JSToNativeBridge.callToNative(profileRequest);
 	    }
 	</script>
 	<script type="text/javascript">
