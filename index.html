@@ -104,7 +104,6 @@
                 	alert("response is not string")
                     jsonResponse = response;
                 }
-​
                 var profileResponse = {};
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
                     profileResponse['status'] = jsonResponse.status;
@@ -131,7 +130,6 @@
             alert('userProfileCallback:' + JSON.stringify(profileResponse));
             functionAlert('userProfileCallback:' + JSON.stringify(profileResponse));
         }
-​
 	    function JSMethodToSendResponse(response){
 	    	let json = JSON.stringify(response)
 	    	alert(json);
