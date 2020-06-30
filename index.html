@@ -106,7 +106,7 @@
 		}
 	    	var userAuthRequest = JSON.stringify(request)
 	    	console.log(userAuthRequest);
-	    	// alert(profileRequest);
+	    	alert(userAuthRequest);
 	        JSToNativeBridge.callToNative(userAuthRequest);
 	    }
 	</script>
@@ -171,7 +171,7 @@
                     var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
                     if (userAuthData) {
                         userAuthResponse['data'] = userAuthData;
-                        userProfile = userAuthResponse;
+                        userAuth = userAuthResponse;
                     }
                 }
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
@@ -179,14 +179,14 @@
                     var errorResponse = jsonResponse && jsonResponse.error || null;
                     if (errorResponse) {
                         userAuthResponse['error'] = errorResponse;
-                        userProfile = null;
+                        userAuth = null;
                     }
                 }
                 if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
                     requestHistory[jsonResponse.request_id](userAuthResponse);
                 }
             } catch (error) {
-                userProfile = null;
+                userAuth = null;
             }
             alert('userProfileCallback:' + JSON.stringify(userAuthResponse));
             functionAlert('userProfileCallback:' + JSON.stringify(userAuthResponse));
