@@ -80,7 +80,7 @@
 	    	let request = {
    							"request_id":"1234",
    							"request_body":{
-      						"request_code" : "user_auth.get_access_token",
+      						"request_code" : "user_profile.get_info",
       						"data": {
       							      					}
    			},
@@ -90,6 +90,24 @@
 	    	console.log(profileRequest);
 	    	// alert(profileRequest);
 	        JSToNativeBridge.callToNative(profileRequest);
+	    }
+	</script>
+	<script type="text/javascript">
+	    function getUserAuthInfo() {
+	    	alert("getUserAuthInfo");
+	    	let request = {
+   							"request_id":"1235",
+   							"request_body":{
+      						"request_code" : "user_auth.get_access_token",
+      						"data": {
+      							      					}
+   			},
+   			"callback":"userAuthInfoCallBack" //Callback code, where the response comes in
+		}
+	    	var userAuthRequest = JSON.stringify(request)
+	    	console.log(userAuthRequest);
+	    	// alert(profileRequest);
+	        JSToNativeBridge.callToNative(userAuthRequest);
 	    }
 	</script>
 	<script type="text/javascript">
@@ -135,8 +153,52 @@
 	    	alert(json);
 	    }
 		</script>
+		<script type="text/javascript">
+ function userAuthInfoCallBack(response) {
+            console.log(JSON.stringify(response));
+            try {
+                var jsonResponse = null;
+                if (typeof response === 'string') {
+                    jsonResponse = JSON.parse(response);
+               		alert("response is string")
+                } else {
+                	alert("response is not string")
+                    jsonResponse = response;
+                }
+                var userAuthResponse = {};
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+                    userAuthResponse['status'] = jsonResponse.status;
+                    var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
+                    if (userAuthData) {
+                        userAuthResponse['data'] = userAuthData;
+                        userProfile = userAuthResponse;
+                    }
+                }
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+                    userAuthResponse['status'] = jsonResponse.status;
+                    var errorResponse = jsonResponse && jsonResponse.error || null;
+                    if (errorResponse) {
+                        userAuthResponse['error'] = errorResponse;
+                        userProfile = null;
+                    }
+                }
+                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                    requestHistory[jsonResponse.request_id](userAuthResponse);
+                }
+            } catch (error) {
+                userProfile = null;
+            }
+            alert('userProfileCallback:' + JSON.stringify(userAuthResponse));
+            functionAlert('userProfileCallback:' + JSON.stringify(userAuthResponse));
+        }
+	    function JSMethodToSendResponse(response){
+	    	let json = JSON.stringify(response)
+	    	alert(json);
+	    }
+		</script>
 		
 		<input type="button" value="Click me!" onclick="showAndroidToast()" />
+		<input type="button" value="Auth Info" onclick="getUserAuthInfo()" />
 		
 		</body>
 </html>
