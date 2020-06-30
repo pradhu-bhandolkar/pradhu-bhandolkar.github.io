@@ -159,7 +159,7 @@
 		</script>
 		<script type="text/javascript">
  function userAuthInfoCallBack(response) {
-            console.log(JSON.stringify(response));
+            alert(JSON.stringify(response));
             try {
                 var jsonResponse = null;
                 if (typeof response === 'string') {
@@ -192,8 +192,8 @@
             } catch (error) {
                 userAuth = null;
             }
-            alert('userProfileCallback:' + JSON.stringify(userAuthResponse));
-            functionAlert('userProfileCallback:' + JSON.stringify(userAuthResponse));
+            alert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
+            functionAlert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
         }
 	    function JSMethodToSendResponse(response){
 	    	let json = JSON.stringify(response)
