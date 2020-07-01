@@ -1,273 +1,294 @@
 <html>
-  <head>
-    <title>Javascript-Android Communication</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-         function functionAlert(msg, myYes) {
-            var confirmBox = $("#confirm");
-            confirmBox.find(".message").text(msg);
-            confirmBox.find(".yes").unbind().click(function() {
-               confirmBox.hide();
-            });
-            confirmBox.find(".yes").click(myYes);
-            confirmBox.show();
-         }
-      </script>
-      <style>
-         #confirm {
-            display: none;
-            background-color: #91FF00;
-            border: 1px solid #aaa;
-            position: fixed;
-            width: 250px;
-            left: 50%;
-            margin-left: -100px;
-            padding: 6px 8px 8px;
-            box-sizing: border-box;
-            text-align: center;
-         }
-         #confirm button {
-            background-color: #48E5DA;
-            display: inline-block;
-            border-radius: 5px;
-            border: 1px solid #aaa;
-            padding: 5px;
-            text-align: center;
-            width: 80px;
-            cursor: pointer;
-         }
-         #confirm .message {
-            text-align: left;
-         }
-      </style>
-  </head>
-	  <body>
-		  <a href="https://halodoc.onelink.me/P71V/962abafe">Corona doctor test</a>
-		  <br><a href="https://halodoc.onelink.me/cQvV/1285e06">Contact doctor test</a>
-		  <br><a href="https://www.halodoc.com/tanya-dokter/cari?query=gene">Contact doctor - gp</a>
-		  <br><a href="https://www.halodoc.com/apotikantar">PD home screen</a>
-		  <br><a href="https://www.halodoc.com/apotikantar/search?search_keyword=panadaol">Search panadol</a>
-		  <br><a href="https://halodoc.onelink.me/P71V/458302a8">Contact doctor - naga</a>
-		  <br><a href="https://www.halodoc.com/labs">Labs</a>
-		  <br><a href="https://www.halodoc.com/rumah-sakit">Hospital Directories</a>
-		  <br><a href="https://www.halodoc.com/rumah-sakit/terdekat">Recommended hospitals</a>
-		  <br><a href="https://www.halodoc.com/rumah-sakit/nama/halodoc-jakarta">Hospital details</a>
-		  <br><a href="https://www.halodoc.com/cari-dokter/nama/chidambara-m-r">Doctor details</a>
-		  <br><br><br><a href="https://play.google.com/store/apps/details?id=com.linkdokter.halodoc.android">Playstore</a>
-		  <br><a href="https://web.stage.halodoc.com/subscription/">Gojek</a>
-		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_apotikantar&c=test_apotikantar&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fapotikantar&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External PD</a>
-		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_contactdoctor&c=test_contactdoctor&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fcontactdoctor&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External TC</a>
-		  <br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_labs&c=test_labs&af_dp=https%3A%2F%2Fwww.halodoc.com%2Flabs&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External Labs</a>
-		  <br><a href="intent://scan/#Intent;scheme=halodoc;package=com.linkdokter.halodoc.android;end"> Take a QR code </a>
-		  <br><a href="https://shorturl.at/hjNU0">Short URL</a>
-		  <br><a href="https://bit.ly/3bcnxGV">High Risk</a>
-		  <br><a href="https://web.stage.halodoc.com/tanya-dokter/cari?query=covid-19">Tanya dokter</a>
-		  <br><a href="https://bit.ly/33xOpi4">Mid risk</a>
-		  <br>
-		  <br>
-		  <button onclick="getLocale()">App Locale</button>
-		  <div id = "confirm">
-         <div class = "message">This is a warning message.</div>
-         	<button class = "yes">OK</button>
-      	</div>
-      	<br>
-      	<br>
-      	<input type = "button"  value = "iOS Click Me"  onclick = "showAndroidToast()" />
-	    <script type="text/javascript">
-	    function alertBox(){
-	    	alert("I am alert box");
-	    }	
+
+<head>
+	<title>Javascript-Android Communication</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+	function functionAlert(msg, myYes) {
+		var confirmBox = $("#confirm");
+		confirmBox.find(".message").text(msg);
+		confirmBox.find(".yes").unbind().click(function() {
+			confirmBox.hide();
+		});
+		confirmBox.find(".yes").click(myYes);
+		confirmBox.show();
+	}
+	</script>
+	<style>
+	#confirm {
+		display: none;
+		background-color: #91FF00;
+		border: 1px solid #aaa;
+		position: fixed;
+		width: 250px;
+		left: 50%;
+		margin-left: -100px;
+		padding: 6px 8px 8px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+	
+	#confirm button {
+		background-color: #48E5DA;
+		display: inline-block;
+		border-radius: 5px;
+		border: 1px solid #aaa;
+		padding: 5px;
+		text-align: center;
+		width: 80px;
+		cursor: pointer;
+	}
+	
+	#confirm .message {
+		text-align: left;
+	}
+	</style>
+</head>
+
+<body> <a href="https://halodoc.onelink.me/P71V/962abafe">Corona doctor test</a>
+	<br><a href="https://halodoc.onelink.me/cQvV/1285e06">Contact doctor test</a>
+	<br><a href="https://www.halodoc.com/tanya-dokter/cari?query=gene">Contact doctor - gp</a>
+	<br><a href="https://www.halodoc.com/apotikantar">PD home screen</a>
+	<br><a href="https://www.halodoc.com/apotikantar/search?search_keyword=panadaol">Search panadol</a>
+	<br><a href="https://halodoc.onelink.me/P71V/458302a8">Contact doctor - naga</a>
+	<br><a href="https://www.halodoc.com/labs">Labs</a>
+	<br><a href="https://www.halodoc.com/rumah-sakit">Hospital Directories</a>
+	<br><a href="https://www.halodoc.com/rumah-sakit/terdekat">Recommended hospitals</a>
+	<br><a href="https://www.halodoc.com/rumah-sakit/nama/halodoc-jakarta">Hospital details</a>
+	<br><a href="https://www.halodoc.com/cari-dokter/nama/chidambara-m-r">Doctor details</a>
+	<br>
+	<br>
+	<br><a href="https://play.google.com/store/apps/details?id=com.linkdokter.halodoc.android">Playstore</a>
+	<br><a href="https://web.stage.halodoc.com/subscription/">Gojek</a>
+	<br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_apotikantar&c=test_apotikantar&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fapotikantar&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External PD</a>
+	<br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_contactdoctor&c=test_contactdoctor&af_dp=https%3A%2F%2Fwww.halodoc.com%2Fcontactdoctor&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External TC</a>
+	<br><a href="https://halodoc-h4c.onelink.me/P71V?pid=test_labs&c=test_labs&af_dp=https%3A%2F%2Fwww.halodoc.com%2Flabs&af_web_dp=http%3A%2F%2Fwww.halodoc.com&is_retargeting=true">External Labs</a>
+	<br><a href="intent://scan/#Intent;scheme=halodoc;package=com.linkdokter.halodoc.android;end"> Take a QR code </a>
+	<br><a href="https://shorturl.at/hjNU0">Short URL</a>
+	<br><a href="https://bit.ly/3bcnxGV">High Risk</a>
+	<br><a href="https://web.stage.halodoc.com/tanya-dokter/cari?query=covid-19">Tanya dokter</a>
+	<br><a href="https://bit.ly/33xOpi4">Mid risk</a>
+	<br>
+	<br>
+	<button onclick="getLocale()">App Locale</button>
+	<div id="confirm">
+		<div class="message">This is a warning message.</div>
+		<button class="yes">OK</button>
+	</div>
+	<br>
+	<br>
+	<input type="button" value="iOS Click Me" onclick="showAndroidToast()" />
+	<script type="text/javascript">
+	function alertBox() {
+		alert("I am alert box");
+	}
 	</script>
 	<script type="text/javascript">
-	    function showAndroidToast() {
-	    	alert("showAndroidToast");
-	    	let request = {
-   							"request_id":"1234",
-   							"request_body":{
-      						"request_code" : "user_profile.get_info",
-      						"data": {
-      							      					}
-   			},
-   			"callback":"userProfileCallback" //Callback code, where the response comes in
+	function showAndroidToast() {
+		alert("showAndroidToast");
+		let request = {
+			"request_id": "1234",
+			"request_body": {
+				"request_code": "user_profile.get_info",
+				"data": {}
+			},
+			"callback": "userProfileCallback" //Callback code, where the response comes in
 		}
-	    	var profileRequest = JSON.stringify(request)
-	    	console.log(profileRequest);
-	    	// alert(profileRequest);
-	        JSToNativeBridge.callToNative(profileRequest);
-	    }
+		var profileRequest = JSON.stringify(request)
+		console.log(profileRequest);
+		// alert(profileRequest);
+		JSToNativeBridge.callToNative(profileRequest);
+	}
 	</script>
 	<script type="text/javascript">
-	    function getLocale() {
-	    	alert("get app locale");
-	    	let request = {
-   							"request_id":"1235",
-   							"request_body":{
-      						"request_code" : "app_locale.get_locale",
-      						"data": {
-      							      					}
-   			},
-   			"callback":"appLocaleCallBack" //Callback code, where the response comes in
+	function getLocale() {
+		alert("get app locale");
+		let request = {
+			"request_id": "1235",
+			"request_body": {
+				"request_code": "app_locale.get_locale",
+				"data": {}
+			},
+			"callback": "appLocaleCallBack" //Callback code, where the response comes in
 		}
-	    	var profileRequest = JSON.stringify(request)
-	    	console.log(profileRequest);
-	    	// alert(profileRequest);
-	        JSToNativeBridge.callToNative(profileRequest);
-	    }
+		var profileRequest = JSON.stringify(request)
+		console.log(profileRequest);
+		// alert(profileRequest);
+		JSToNativeBridge.callToNative(profileRequest);
+	}
 	</script>
 	<script type="text/javascript">
-	    function getUserAuthInfo() {
-	    	alert("getUserAuthInfo");
-	    	let request = {
-   							"request_id":"1236",
-   							"request_body":{
-      						"request_code" : "user_auth.get_access_token",
-      						"data": {
-      							      					}
-   			},
-   			"callback":"userAuthCallback" //Callback code, where the response comes in
+	function getUserAuthInfo() {
+		alert("getUserAuthInfo");
+		let request = {
+			"request_id": "1236",
+			"request_body": {
+				"request_code": "user_auth.get_access_token",
+				"data": {}
+			},
+			"callback": "userAuthCallback" //Callback code, where the response comes in
 		}
-	    	var userAuthRequest = JSON.stringify(request)
-	    	console.log(userAuthRequest);
-	    	alert(userAuthRequest);
-	        JSToNativeBridge.callToNative(userAuthRequest);
-	    }
+		var userAuthRequest = JSON.stringify(request)
+		console.log(userAuthRequest);
+		alert(userAuthRequest);
+		JSToNativeBridge.callToNative(userAuthRequest);
+	}
 	</script>
 	<script type="text/javascript">
- function userProfileCallback(response) {
-            console.log(JSON.stringify(response));
-            try {
-                var jsonResponse = null;
-                if (typeof response === 'string') {
-                    jsonResponse = JSON.parse(response);
-               		alert("response is string")
-                } else {
-                	alert("response is not string")
-                    jsonResponse = response;
-                }
-                var profileResponse = {};
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    profileResponse['status'] = jsonResponse.status;
-                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.profile || null;
-                    if (profileData) {
-                        profileResponse['data'] = profileData;
-                        userProfile = profileResponse;
-                    }
-                }
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    profileResponse['status'] = jsonResponse.status;
-                    var errorResponse = jsonResponse && jsonResponse.error || null;
-                    if (errorResponse) {
-                        profileResponse['error'] = errorResponse;
-                        userProfile = null;
-                    }
-                }
-                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](profileResponse);
-                }
-            } catch (error) {
-                userProfile = null;
-            }
-            alert('userProfileCallback:' + JSON.stringify(profileResponse));
-            functionAlert('userProfileCallback:' + JSON.stringify(profileResponse));
-        }
-	    function JSMethodToSendResponse(response){
-	    	let json = JSON.stringify(response)
-	    	alert(json);
-	    }
-		</script>
-		<script type="text/javascript">
- function appLocaleCallBack(response) {
-            console.log(JSON.stringify(response));
-            try {
-                var jsonResponse = null;
-                if (typeof response === 'string') {
-                    jsonResponse = JSON.parse(response);
-                    alert("response is string")
-                } else {
-                    alert("response is not string")
-                    jsonResponse = response;
-                }
-                var appLocaleResp = {};
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    appLocaleResp['status'] = jsonResponse.status;
-                    var appLocaleData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.locale || null;
-                    if (appLocaleData) {
-                        appLocaleResp['data'] = appLocaleData;
-                        appLocale = appLocaleResp;
-                    }
-                }
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    appLocaleResp['status'] = jsonResponse.status;
-                    var errorResponse = jsonResponse && jsonResponse.error || null;
-                    if (errorResponse) {
-                        appLocaleResp['error'] = errorResponse;
-                        appLocale = null;
-                    }
-                }
-                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](appLocaleResp);
-                }
-            } catch (error) {
-                appLocale = null;
-            }
-            alert('appLocale:' + JSON.stringify(appLocaleResp));
-            functionAlert('appLocale:' + JSON.stringify(appLocaleResp));
-        }
-        function JSMethodToSendResponse(response){
-            let json = JSON.stringify(response)
-            alert(json);
-        }
-        </script>
-		<script type="text/javascript">
- 		function userAuthCallback(response) {
- 			alert('inside auth call back method')
-            alert(JSON.stringify(response));
-            try {
-                var jsonResponse = null;
-                if (typeof response === 'string') {
-                    jsonResponse = JSON.parse(response);
-               		alert("response is string")
-                } else {
-                	alert("response is not string")
-                    jsonResponse = response;
-                }
-                var userAuthResponse = {};
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    userAuthResponse['status'] = jsonResponse.status;
-                    var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
-                    if (userAuthData) {
-                        userAuthResponse['data'] = userAuthData;
-                        userAuth = userAuthResponse;
-                    }
-                }
-                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    userAuthResponse['status'] = jsonResponse.status;
-                    var errorResponse = jsonResponse && jsonResponse.error || null;
-                    if (errorResponse) {
-                        userAuthResponse['error'] = errorResponse;
-                        userAuth = null;
-                    }
-                }
-                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](userAuthResponse);
-                }
-            } catch (error) {
-                userAuth = null;
-            }
-            alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
-            functionAlert('userAuthCallback:' + JSON.stringify(userAuthResponse));
-        }
-	    function JSMethodToSendResponse(response){
-	    	let json = JSON.stringify(response)
-	    	alert(json);
-	    }
-		</script>
-		<br>
-		<br>
-		<input type="button" value="Click me!" onclick="showAndroidToast()" />
-		<br>
-		<br>
-		<input type="button" value="Auth Info" onclick="getUserAuthInfo()" />
-		
-		</body>
+	function refreshAuthtoken() {
+		alert("refreshAuthtoken");
+		let request = {
+			"request_id": "1237",
+			"request_body": {
+				"request_code": "user_auth.refresh_access_token",
+				"data": {}
+			},
+			"callback": "userAuthCallback" //Callback code, where the response comes in
+		}
+		var refreshTokenRequest = JSON.stringify(request)
+		console.log(refreshTokenRequest);
+		alert(refreshTokenRequest);
+		JSToNativeBridge.callToNative(refreshTokenRequest);
+	}
+	</script>
+	<script type="text/javascript">
+	function userProfileCallback(response) {
+		console.log(JSON.stringify(response));
+		try {
+			var jsonResponse = null;
+			if(typeof response === 'string') {
+				jsonResponse = JSON.parse(response);
+				alert("response is string")
+			} else {
+				alert("response is not string")
+				jsonResponse = response;
+			}
+			var profileResponse = {};
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+				profileResponse['status'] = jsonResponse.status;
+				var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.profile || null;
+				if(profileData) {
+					profileResponse['data'] = profileData;
+					userProfile = profileResponse;
+				}
+			}
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+				profileResponse['status'] = jsonResponse.status;
+				var errorResponse = jsonResponse && jsonResponse.error || null;
+				if(errorResponse) {
+					profileResponse['error'] = errorResponse;
+					userProfile = null;
+				}
+			}
+			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+				requestHistory[jsonResponse.request_id](profileResponse);
+			}
+		} catch(error) {
+			userProfile = null;
+		}
+		alert('userProfileCallback:' + JSON.stringify(profileResponse));
+		functionAlert('userProfileCallback:' + JSON.stringify(profileResponse));
+	}
+
+	function JSMethodToSendResponse(response) {
+		let json = JSON.stringify(response)
+		alert(json);
+	}
+	</script>
+	<script type="text/javascript">
+	function appLocaleCallBack(response) {
+		console.log(JSON.stringify(response));
+		try {
+			var jsonResponse = null;
+			if(typeof response === 'string') {
+				jsonResponse = JSON.parse(response);
+				alert("response is string")
+			} else {
+				alert("response is not string")
+				jsonResponse = response;
+			}
+			var appLocaleResp = {};
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+				appLocaleResp['status'] = jsonResponse.status;
+				var appLocaleData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.locale || null;
+				if(appLocaleData) {
+					appLocaleResp['data'] = appLocaleData;
+					appLocale = appLocaleResp;
+				}
+			}
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+				appLocaleResp['status'] = jsonResponse.status;
+				var errorResponse = jsonResponse && jsonResponse.error || null;
+				if(errorResponse) {
+					appLocaleResp['error'] = errorResponse;
+					appLocale = null;
+				}
+			}
+			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+				requestHistory[jsonResponse.request_id](appLocaleResp);
+			}
+		} catch(error) {
+			appLocale = null;
+		}
+		alert('appLocale:' + JSON.stringify(appLocaleResp));
+		functionAlert('appLocale:' + JSON.stringify(appLocaleResp));
+	}
+
+	function JSMethodToSendResponse(response) {
+		let json = JSON.stringify(response)
+		alert(json);
+	}
+	</script>
+	<script type="text/javascript">
+	function userAuthCallback(response) {
+		alert('inside auth call back method')
+		alert(JSON.stringify(response));
+		try {
+			var jsonResponse = null;
+			if(typeof response === 'string') {
+				jsonResponse = JSON.parse(response);
+				alert("response is string")
+			} else {
+				alert("response is not string")
+				jsonResponse = response;
+			}
+			var userAuthResponse = {};
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+				userAuthResponse['status'] = jsonResponse.status;
+				var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
+				if(userAuthData) {
+					userAuthResponse['data'] = userAuthData;
+					userAuth = userAuthResponse;
+				}
+			}
+			if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+				userAuthResponse['status'] = jsonResponse.status;
+				var errorResponse = jsonResponse && jsonResponse.error || null;
+				if(errorResponse) {
+					userAuthResponse['error'] = errorResponse;
+					userAuth = null;
+				}
+			}
+			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+				requestHistory[jsonResponse.request_id](userAuthResponse);
+			}
+		} catch(error) {
+			userAuth = null;
+		}
+		alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
+		functionAlert('userAuthCallback:' + JSON.stringify(userAuthResponse));
+	}
+
+	function JSMethodToSendResponse(response) {
+		let json = JSON.stringify(response)
+		alert(json);
+	}
+	</script>
+	<br>
+	<br>
+	<input type="button" value="Click me!" onclick="showAndroidToast()" />
+	<br>
+	<br>
+	<input type="button" value="Auth Info" onclick="getUserAuthInfo()" /> </body>
+
 </html>
