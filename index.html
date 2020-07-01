@@ -124,7 +124,7 @@
       						"data": {
       							      					}
    			},
-   			"callback":"userAuthInfoCallBack" //Callback code, where the response comes in
+   			"callback":"userAuthCallback" //Callback code, where the response comes in
 		}
 	    	var userAuthRequest = JSON.stringify(request)
 	    	console.log(userAuthRequest);
@@ -219,7 +219,8 @@
 	    }
 		</script>
 		<script type="text/javascript">
- function userAuthInfoCallBack(response) {
+ function userAuthCallback(response) {
+ 			alert('inside auth call back method')
             alert(JSON.stringify(response));
             try {
                 var jsonResponse = null;
@@ -230,32 +231,36 @@
                 	alert("response is not string")
                     jsonResponse = response;
                 }
-                var userAuthResponse = {};
+                var profileResponse = {};
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    userAuthResponse['status'] = jsonResponse.status;
-                    var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
-                    if (userAuthData) {
-                        userAuthResponse['data'] = userAuthData;
-                        userAuth = userAuthResponse;
+                    profileResponse['status'] = jsonResponse.status;
+                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
+                    if (profileData) {
+                        profileResponse['data'] = profileData;
+                        userProfile = profileResponse;
                     }
                 }
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    userAuthResponse['status'] = jsonResponse.status;
+                    profileResponse['status'] = jsonResponse.status;
                     var errorResponse = jsonResponse && jsonResponse.error || null;
                     if (errorResponse) {
-                        userAuthResponse['error'] = errorResponse;
-                        userAuth = null;
+                        profileResponse['error'] = errorResponse;
+                        userProfile = null;
                     }
                 }
                 if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](userAuthResponse);
+                    requestHistory[jsonResponse.request_id](profileResponse);
                 }
             } catch (error) {
-                userAuth = null;
+                userProfile = null;
             }
-            alert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
-            functionAlert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
+            alert('userProfileCallback:' + JSON.stringify(profileResponse));
+            functionAlert('userProfileCallback:' + JSON.stringify(profileResponse));
         }
+	    function JSMethodToSendResponse(response){
+	    	let json = JSON.stringify(response)
+	    	alert(json);
+	    }
 		</script>
 		<br>
 		<br>
