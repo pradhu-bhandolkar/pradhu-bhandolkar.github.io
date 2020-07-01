@@ -182,44 +182,44 @@
                 var jsonResponse = null;
                 if (typeof response === 'string') {
                     jsonResponse = JSON.parse(response);
-               		alert("response is string")
+                    alert("response is string")
                 } else {
-                	alert("response is not string")
+                    alert("response is not string")
                     jsonResponse = response;
                 }
-                var profileResponse = {};
+                var appLocaleResp = {};
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    profileResponse['status'] = jsonResponse.status;
-                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.locale || null;
-                    if (profileData) {
-                        profileResponse['data'] = profileData;
-                        userProfile = profileResponse;
+                    appLocaleResp['status'] = jsonResponse.status;
+                    var appLocaleData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.locale || null;
+                    if (appLocaleData) {
+                        appLocaleResp['data'] = appLocaleData;
+                        appLocale = appLocaleResp;
                     }
                 }
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    profileResponse['status'] = jsonResponse.status;
+                    appLocaleResp['status'] = jsonResponse.status;
                     var errorResponse = jsonResponse && jsonResponse.error || null;
                     if (errorResponse) {
-                        profileResponse['error'] = errorResponse;
-                        userProfile = null;
+                        appLocaleResp['error'] = errorResponse;
+                        appLocale = null;
                     }
                 }
                 if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](profileResponse);
+                    requestHistory[jsonResponse.request_id](appLocaleResp);
                 }
             } catch (error) {
-                userProfile = null;
+                appLocale = null;
             }
-            alert('appLocale:' + JSON.stringify(profileResponse));
-            functionAlert('appLocale:' + JSON.stringify(profileResponse));
+            alert('appLocale:' + JSON.stringify(appLocaleResp));
+            functionAlert('appLocale:' + JSON.stringify(appLocaleResp));
         }
-	    function JSMethodToSendResponse(response){
-	    	let json = JSON.stringify(response)
-	    	alert(json);
-	    }
-		</script>
+        function JSMethodToSendResponse(response){
+            let json = JSON.stringify(response)
+            alert(json);
+        }
+        </script>
 		<script type="text/javascript">
- function userAuthCallback(response) {
+ 		function userAuthCallback(response) {
  			alert('inside auth call back method')
             alert(JSON.stringify(response));
             try {
@@ -231,31 +231,31 @@
                 	alert("response is not string")
                     jsonResponse = response;
                 }
-                var profileResponse = {};
+                var userAuthResponse = {};
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
-                    profileResponse['status'] = jsonResponse.status;
-                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
-                    if (profileData) {
-                        profileResponse['data'] = profileData;
-                        userProfile = profileResponse;
+                    userAuthResponse['status'] = jsonResponse.status;
+                    var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
+                    if (userAuthData) {
+                        userAuthResponse['data'] = userAuthData;
+                        userAuth = userAuthResponse;
                     }
                 }
                 if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
-                    profileResponse['status'] = jsonResponse.status;
+                    userAuthResponse['status'] = jsonResponse.status;
                     var errorResponse = jsonResponse && jsonResponse.error || null;
                     if (errorResponse) {
-                        profileResponse['error'] = errorResponse;
-                        userProfile = null;
+                        userAuthResponse['error'] = errorResponse;
+                        userAuth = null;
                     }
                 }
                 if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                    requestHistory[jsonResponse.request_id](profileResponse);
+                    requestHistory[jsonResponse.request_id](userAuthResponse);
                 }
             } catch (error) {
-                userProfile = null;
+                userAuth = null;
             }
-            alert('userProfileCallback:' + JSON.stringify(profileResponse));
-            functionAlert('userProfileCallback:' + JSON.stringify(profileResponse));
+            alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
+            functionAlert('userAuthCallback:' + JSON.stringify(userAuthResponse));
         }
 	    function JSMethodToSendResponse(response){
 	    	let json = JSON.stringify(response)
