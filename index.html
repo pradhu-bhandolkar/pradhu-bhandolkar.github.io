@@ -143,7 +143,7 @@
 				"request_code": "user_auth.refresh_access_token",
 				"data": {}
 			},
-			"callback": "userAuthCallback" //Callback code, where the response comes in
+			"callback": "refreshAuthTokenCallBack" //Callback code, where the response comes in
 		}
 		var refreshTokenRequest = JSON.stringify(request)
 		console.log(refreshTokenRequest);
@@ -284,6 +284,47 @@
 		alert(json);
 	}
 	</script>
+	<script type="text/javascript">
+    function refreshAuthTokenCallBack(response) {
+        alert('inside refresh auth call back method')
+        alert(JSON.stringify(response));
+        try {
+            var jsonResponse = null;
+            if(typeof response === 'string') {
+                jsonResponse = JSON.parse(response);
+                alert("response is string")
+            } else {
+                alert("response is not string")
+                jsonResponse = response;
+            }
+            var userAuthResponse = {};
+            if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+                userAuthResponse['status'] = jsonResponse.status;
+                var userAuthData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.user_auth || null;
+                if(userAuthData) {
+                    userAuthResponse['data'] = userAuthData;
+                    userAuth = userAuthResponse;
+                }
+            }
+            if(jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+                userAuthResponse['status'] = jsonResponse.status;
+                var errorResponse = jsonResponse && jsonResponse.error || null;
+                alert("Error : "+errorResponse);
+                if(errorResponse) {
+                    userAuthResponse['error'] = errorResponse;
+                    userAuth = null;
+                }
+            }
+            if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                requestHistory[jsonResponse.request_id](userAuthResponse);
+            }
+        } catch(error) {
+            userAuth = null;
+        }
+        alert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
+        functionAlert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
+    }
+    </script>
 	<br>
 	<br>
 	<input type="button" value="Click me!" onclick="showAndroidToast()" />
