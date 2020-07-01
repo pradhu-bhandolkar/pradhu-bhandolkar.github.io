@@ -65,7 +65,7 @@
 		  <br><a href="https://bit.ly/33xOpi4">Mid risk</a>
 		  <br>
 		  <br>
-		  <button onclick="alertBox()">Try it</button>
+		  <button onclick="getLocale()">App Locale</button>
 		  <div id = "confirm">
          <div class = "message">This is a warning message.</div>
          	<button class = "yes">OK</button>
@@ -97,10 +97,28 @@
 	    }
 	</script>
 	<script type="text/javascript">
+	    function getLocale() {
+	    	alert("get app locale");
+	    	let request = {
+   							"request_id":"1235",
+   							"request_body":{
+      						"request_code" : "app_locale.get_locale",
+      						"data": {
+      							      					}
+   			},
+   			"callback":"appLocaleCallBack" //Callback code, where the response comes in
+		}
+	    	var profileRequest = JSON.stringify(request)
+	    	console.log(profileRequest);
+	    	// alert(profileRequest);
+	        JSToNativeBridge.callToNative(profileRequest);
+	    }
+	</script>
+	<script type="text/javascript">
 	    function getUserAuthInfo() {
 	    	alert("getUserAuthInfo");
 	    	let request = {
-   							"request_id":"1235",
+   							"request_id":"1236",
    							"request_body":{
       						"request_code" : "user_auth.get_access_token",
       						"data": {
@@ -158,6 +176,49 @@
 	    }
 		</script>
 		<script type="text/javascript">
+ function appLocaleCallBack(response) {
+            console.log(JSON.stringify(response));
+            try {
+                var jsonResponse = null;
+                if (typeof response === 'string') {
+                    jsonResponse = JSON.parse(response);
+               		alert("response is string")
+                } else {
+                	alert("response is not string")
+                    jsonResponse = response;
+                }
+                var profileResponse = {};
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.locale || null;
+                    if (profileData) {
+                        profileResponse['data'] = profileData;
+                        userProfile = profileResponse;
+                    }
+                }
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var errorResponse = jsonResponse && jsonResponse.error || null;
+                    if (errorResponse) {
+                        profileResponse['error'] = errorResponse;
+                        userProfile = null;
+                    }
+                }
+                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                    requestHistory[jsonResponse.request_id](profileResponse);
+                }
+            } catch (error) {
+                userProfile = null;
+            }
+            alert('appLocale:' + JSON.stringify(profileResponse));
+            functionAlert('appLocale:' + JSON.stringify(profileResponse));
+        }
+	    function JSMethodToSendResponse(response){
+	    	let json = JSON.stringify(response)
+	    	alert(json);
+	    }
+		</script>
+		<script type="text/javascript">
  function userAuthInfoCallBack(response) {
             alert(JSON.stringify(response));
             try {
@@ -195,10 +256,6 @@
             alert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
             functionAlert('userAuthInfoCallBack:' + JSON.stringify(userAuthResponse));
         }
-	    function JSMethodToSendResponse(response){
-	    	let json = JSON.stringify(response)
-	    	alert(json);
-	    }
 		</script>
 		<br>
 		<br>
