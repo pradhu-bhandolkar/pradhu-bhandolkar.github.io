@@ -77,19 +77,19 @@
 	</div>
 	<br>
 	<br>
-	<input type="button" value="iOS Click Me" onclick="showAndroidToast()" />
+	<input type="button" value="iOS Click Me" onclick="getUserProfile()" />
 	<script type="text/javascript">
 	function alertBox() {
 		alert("I am alert box");
 	}
 	</script>
 	<script type="text/javascript">
-	function showAndroidToast() {
-		alert("showAndroidToast");
+	function getUserProfile() {
+		alert("getUserProfile");
 		let request = {
 			"request_id": "1234",
 			"request_body": {
-				"request_code": "user_profile.get_info_wrong",
+				"request_code": "user_profile.get_info",
 				"data": {}
 			},
 			"callback": "userProfileCallback" //Callback code, where the response comes in
@@ -123,7 +123,7 @@
 		let request = {
 			"request_id": "1236",
 			"request_body": {
-				"request_code": "user_auth.get_access_token_wrong",
+				"request_code": "user_auth.get_access_token",
 				"data": {}
 			},
 			"callback": "userAuthCallback" //Callback code, where the response comes in
@@ -327,7 +327,7 @@
     </script>
 	<br>
 	<br>
-	<input type="button" value="Click me!" onclick="showAndroidToast()" />
+	<input type="button" value="Click me!" onclick="getUserProfile()" />
 	<br>
 	<br>
 	<input type="button" value="Auth Info" onclick="getUserAuthInfo()" />
