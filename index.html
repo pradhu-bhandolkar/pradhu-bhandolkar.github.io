@@ -19,6 +19,7 @@
            },
            "callback":"JSMethodToSendResponse"
         }
+        alert("Request is : "+json);
         if (window.JSToNativeBridge != undefined && JSToNativeBridge.callToNative) {
         	alert("Calling : "+JSToNativeBridge.callToNative(json));
             JSToNativeBridge.callToNative(json);
@@ -33,6 +34,7 @@
             };
     } }
     catch(err) {
+    	alert("In catch block");
         alert("Error : "+err);
     }
 
