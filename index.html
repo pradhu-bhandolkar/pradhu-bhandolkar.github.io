@@ -272,13 +272,9 @@
 					userAuth = null;
 				}
 			}
-			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-				requestHistory[jsonResponse.request_id](userAuthResponse);
-			}
-		} catch(err) {
-    	    let x = document.getElementsByTagName("h3")[0];
-    	    alert("Error : "+err)
-        	x.innerHTML = "error" + err;
+		} catch(error) {
+    	    alert("Error : "+error)
+        	x.innerHTML = "error" + error;
 	    }
 
 		alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
@@ -321,13 +317,9 @@
                     userAuth = null;
                 }
             }
-            if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
-                requestHistory[jsonResponse.request_id](userAuthResponse);
-            }
-        } catch(err) {
-    	    let x = document.getElementsByTagName("h3")[0];
-    	    alert("Error : "+err)
-        	x.innerHTML = "error" + err;
+        } catch(error) {
+    	    alert("Error : "+error)
+        	x.innerHTML = "error" + error;
 	    }
         alert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
         functionAlert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
