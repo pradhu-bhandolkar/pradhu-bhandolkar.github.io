@@ -19,7 +19,7 @@
            },
            "callback":"JSMethodToSendResponse"
         }
-  JSToNativeBridge.postMessage(JSON.stringify(json));
+  JSToNativeBridge.callToNative(JSON.stringify(json));
     } catch(err) {
         let x = document.getElementsByTagName("h3")[0];
         x.innerHTML = "error" + err;
