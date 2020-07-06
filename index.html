@@ -2,7 +2,7 @@
 <html>
 <body>
 <h2>Period tracker sample</h2>
-<button onclick="postMessage('get_access_')">Get Info</button>
+<button onclick="postMessage('get_access_token')">Get Info</button>
 <button onclick="postMessage('refresh_access_token')">Refresh Access Token</button>
 <p id="demo"></p>
 <script>
@@ -33,13 +33,15 @@
  	// 	alert("response"+JSON.stringify(string));
   //     var x = document.getElementsByTagName("h3")[0];
   //     x.innerHTML = JSON.stringify(string);
-  document.write(JSON.stringify("Response : "+response));
+  alert("Response : "+JSON.stringify(response));
             try {
                 var jsonResponse = null;
                 if (typeof response === 'string') {
                     jsonResponse = JSON.parse(response);
+                    alert("Response in try: "+response);
                 } else {
                     jsonResponse = response;
+                    alert("Response in try: "+JSON.stringify(response));
                 }
 
                 var profileResponse = {};
@@ -65,7 +67,7 @@
             } catch (error) {
                 userProfile = null;
             }
-            document.write('userProfileCallback:' + JSON.stringify(profileResponse));
+            alert('userProfileCallback:' + JSON.stringify(profileResponse));
     }
 
 </script>
