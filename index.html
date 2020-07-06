@@ -19,7 +19,7 @@
            },
            "callback":"JSMethodToSendResponse"
         }
-  window.webkit.messageHandlers.JSToNativeBridge.postMessage(JSON.stringify(json));
+  JSToNativeBridge.postMessage(JSON.stringify(json));
     } catch(err) {
         let x = document.getElementsByTagName("h3")[0];
         x.innerHTML = "error" + err;
