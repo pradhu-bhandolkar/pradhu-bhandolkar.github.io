@@ -122,6 +122,7 @@
 	</script>
 	<script type="text/javascript">
 	function getUserAuthInfo() {
+		try{
 		alert("getUserAuthInfo");
 		let request = {
 			"request_id": "1236",
@@ -135,10 +136,15 @@
 		console.log(userAuthRequest);
 		alert(userAuthRequest);
 		JSToNativeBridge.callToNative(userAuthRequest);
+		}catch(error) {
+    	    alert("Error : "+error)
+        	x.innerHTML = "error" + error;
+	    }
 	}
 	</script>
 	<script type="text/javascript">
 	function refreshAuthtoken() {
+		try{
 		alert("refreshAuthtoken");
 		let request = {
 			"request_id": "1237",
@@ -152,6 +158,10 @@
 		console.log(refreshTokenRequest);
 		alert(refreshTokenRequest);
 		JSToNativeBridge.callToNative(refreshTokenRequest);
+		}catch(error) {
+    	    alert("Error : "+error)
+        	x.innerHTML = "error" + error;
+	    }
 	}
 	</script>
 	<script type="text/javascript">
@@ -272,11 +282,12 @@
 					userAuth = null;
 				}
 			}
+			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+				requestHistory[jsonResponse.request_id](userAuthResponse);
+			}
 		} catch(error) {
-    	    alert("Error : "+error)
-        	x.innerHTML = "error" + error;
-	    }
-
+			userAuth = null;
+		}
 		alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
 		functionAlert('userAuthCallback:' + JSON.stringify(userAuthResponse));
 	}
@@ -317,10 +328,12 @@
                     userAuth = null;
                 }
             }
+            if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                requestHistory[jsonResponse.request_id](userAuthResponse);
+            }
         } catch(error) {
-    	    alert("Error : "+error)
-        	x.innerHTML = "error" + error;
-	    }
+            userAuth = null;
+        }
         alert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
         functionAlert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
     }
