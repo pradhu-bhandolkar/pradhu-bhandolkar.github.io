@@ -275,9 +275,12 @@
 			if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
 				requestHistory[jsonResponse.request_id](userAuthResponse);
 			}
-		} catch(error) {
-			userAuth = null;
-		}
+		} catch(err) {
+    	    let x = document.getElementsByTagName("h3")[0];
+    	    alert("Error : "+err)
+        	x.innerHTML = "error" + err;
+	    }
+
 		alert('userAuthCallback:' + JSON.stringify(userAuthResponse));
 		functionAlert('userAuthCallback:' + JSON.stringify(userAuthResponse));
 	}
@@ -321,9 +324,11 @@
             if(jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
                 requestHistory[jsonResponse.request_id](userAuthResponse);
             }
-        } catch(error) {
-            userAuth = null;
-        }
+        } catch(err) {
+    	    let x = document.getElementsByTagName("h3")[0];
+    	    alert("Error : "+err)
+        	x.innerHTML = "error" + err;
+	    }
         alert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
         functionAlert('refreshAuthTokenCallBack:' + JSON.stringify(userAuthResponse));
     }
