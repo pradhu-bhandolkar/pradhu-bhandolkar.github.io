@@ -31,9 +31,9 @@
     }
  function JSMethodToSendResponse(string) {
  	document.write(string);
- 		alert("response"+string);
+ 		alert("response"+JSON.stringify(string));
       var x = document.getElementsByTagName("h3")[0];
-      x.innerHTML = string;
+      x.innerHTML = JSON.stringify(string);
     }
 
 </script>
