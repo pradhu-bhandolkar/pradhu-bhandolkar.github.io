@@ -19,28 +19,19 @@
            },
            "callback":"JSMethodToSendResponse"
         }
-        alert("Request is : "+json);
-        if (window.JSToNativeBridge != undefined && JSToNativeBridge.callToNative) {
-        	alert("Calling : "+JSToNativeBridge.callToNative(json));
-            JSToNativeBridge.callToNative(json);
-        } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.JSToNativeBridge && window.webkit.messageHandlers.JSToNativeBridge.postMessage) {
-            alert("Calling : "+window.webkit.messageHandlers.JSToNativeBridge.postMessage(json));
-            window.webkit.messageHandlers.JSToNativeBridge.postMessage(json);
-        } else {
-            var response = {};
-            response['status'] = 'failure';
-            response['error'] = {
-                message: 'JSToNativeBridge not supported by browser'
-            };
-    } }
-    catch(err) {
-    	alert("In catch block");
-        alert("Error : "+err);
+        alert("Request : "+JSON.stringify(json));
+  		JSToNativeBridge.callToNative(JSON.stringify(json));
+    } catch(err) {
+    	alert("In catch");
+    	alert("Error: "+err)
+        let x = document.getElementsByTagName("h3")[0];
+        x.innerHTML = "error" + err;
     }
 
     }
  function JSMethodToSendResponse(string) {
-      alert("Response : "+string);
+      var x = document.getElementsByTagName("h3")[0];
+      x.innerHTML = string;
     }
 
 </script>
