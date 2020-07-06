@@ -20,8 +20,6 @@
            "callback":"JSMethodToSendResponse"
         }
         alert("Request : "+JSON.stringify(json));
-  		var resp = JSToNativeBridge.callToNative(JSON.stringify(json));
-  		alert("Response in try : "+JSON.stringify(resp));
     } catch(err) {
     	alert("In catch");
     	alert("Error: "+err)
@@ -30,11 +28,44 @@
     }
 
     }
- function JSMethodToSendResponse(string) {
- 	document.write(string);
- 		alert("response"+JSON.stringify(string));
-      var x = document.getElementsByTagName("h3")[0];
-      x.innerHTML = JSON.stringify(string);
+ function JSMethodToSendResponse(response) {
+ 	// document.write(string);
+ 	// 	alert("response"+JSON.stringify(string));
+  //     var x = document.getElementsByTagName("h3")[0];
+  //     x.innerHTML = JSON.stringify(string);
+  document.write(JSON.stringify("Response : "+response));
+            try {
+                var jsonResponse = null;
+                if (typeof response === 'string') {
+                    jsonResponse = JSON.parse(response);
+                } else {
+                    jsonResponse = response;
+                }
+
+                var profileResponse = {};
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'success') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var profileData = jsonResponse && jsonResponse.response_body && jsonResponse.response_body.data && jsonResponse.response_body.data.profile || null;
+                    if (profileData) {
+                        profileResponse['data'] = profileData;
+                        userProfile = profileResponse;
+                    }
+                }
+                if (jsonResponse && jsonResponse.status && jsonResponse.status.toLowerCase() === 'failure') {
+                    profileResponse['status'] = jsonResponse.status;
+                    var errorResponse = jsonResponse && jsonResponse.error || null;
+                    if (errorResponse) {
+                        profileResponse['error'] = errorResponse;
+                        userProfile = null;
+                    }
+                }
+                if (jsonResponse && jsonResponse.request_id && requestHistory[jsonResponse.request_id]) {
+                    requestHistory[jsonResponse.request_id](profileResponse);
+                }
+            } catch (error) {
+                userProfile = null;
+            }
+            document.write('userProfileCallback:' + JSON.stringify(profileResponse));
     }
 
 </script>
