@@ -20,8 +20,10 @@
            "callback":"JSMethodToSendResponse"
         }
         if (window.JSToNativeBridge != undefined && JSToNativeBridge.callToNative) {
+        	alert("Calling : "+JSToNativeBridge.callToNative(json));
             JSToNativeBridge.callToNative(json);
         } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.JSToNativeBridge && window.webkit.messageHandlers.JSToNativeBridge.postMessage) {
+            alert("Calling : "+window.webkit.messageHandlers.JSToNativeBridge.postMessage(json));
             window.webkit.messageHandlers.JSToNativeBridge.postMessage(json);
         } else {
             var response = {};
