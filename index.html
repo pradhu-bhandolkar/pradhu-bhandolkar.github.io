@@ -80,7 +80,7 @@
 	</div>
 	<br>
 	<br>
-	<input type="button" value="iOS Click Me" onclick="getUserProfile()" />
+	<input type="button" value="iOS Get User Profile" onclick="getUserProfile()" />
 	<script type="text/javascript">
 	function alertBox() {
 		alert("I am alert box");
@@ -88,7 +88,7 @@
 	</script>
 	<script type="text/javascript">
 	function getUserProfile() {
-		alert("getUserProfile");
+		// alert("getUserProfile");
 		let request = {
 			"request_id": "1234",
 			"request_body": {
@@ -105,7 +105,7 @@
 	</script>
 	<script type="text/javascript">
 	function getLocale() {
-		alert("get app locale");
+		// alert("get app locale");
 		let request = {
 			"request_id": "1235",
 			"request_body": {
@@ -123,7 +123,7 @@
 	<script type="text/javascript">
 	function getUserAuthInfo() {
 		try{
-		alert("getUserAuthInfo");
+		// alert("getUserAuthInfo");
 		let request = {
 			"request_id": "1236",
 			"request_body": {
@@ -145,7 +145,7 @@
 	<script type="text/javascript">
 	function refreshAuthtoken() {
 		try{
-		alert("refreshAuthtoken");
+		// alert("refreshAuthtoken");
 		let request = {
 			"request_id": "1237",
 			"request_body": {
@@ -171,9 +171,7 @@
 			var jsonResponse = null;
 			if(typeof response === 'string') {
 				jsonResponse = JSON.parse(response);
-				alert("response is string")
 			} else {
-				alert("response is not string")
 				jsonResponse = response;
 			}
 			var profileResponse = {};
@@ -215,9 +213,9 @@
 			var jsonResponse = null;
 			if(typeof response === 'string') {
 				jsonResponse = JSON.parse(response);
-				alert("response is string")
+				// alert("response is string")
 			} else {
-				alert("response is not string")
+				// alert("response is not string")
 				jsonResponse = response;
 			}
 			var appLocaleResp = {};
@@ -340,7 +338,7 @@
     </script>
 	<br>
 	<br>
-	<input type="button" value="Click me!" onclick="getUserProfile()" />
+	<input type="button" value="User Profile" onclick="getUserProfile()" />
 	<br>
 	<br>
 	<input type="button" value="Auth Info" onclick="getUserAuthInfo()" />
