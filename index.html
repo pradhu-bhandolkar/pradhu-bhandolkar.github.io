@@ -20,7 +20,8 @@
            "callback":"JSMethodToSendResponse"
         }
         alert("Request : "+JSON.stringify(json));
-  		JSToNativeBridge.callToNative(JSON.stringify(json));
+  		var resp = JSToNativeBridge.callToNative(JSON.stringify(json));
+  		alert("Response in try : "+JSON.stringify(resp));
     } catch(err) {
     	alert("In catch");
     	alert("Error: "+err)
