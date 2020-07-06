@@ -19,7 +19,16 @@
            },
            "callback":"JSMethodToSendResponse"
         }
-  JSToNativeBridge.postMessage(JSON.stringify(json));
+        if (window.JSToNativeBridge != undefined && JSToNativeBridge.callToNative) {
+            JSToNativeBridge.callToNative(json);
+        } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.JSToNativeBridge && window.webkit.messageHandlers.JSToNativeBridge.postMessage) {
+            window.webkit.messageHandlers.JSToNativeBridge.postMessage(json);
+        } else {
+            var response = {};
+            response['status'] = 'failure';
+            response['error'] = {
+                message: 'JSToNativeBridge not supported by browser'
+            };
     } catch(err) {
         let x = document.getElementsByTagName("h3")[0];
         x.innerHTML = "error" + err;
