@@ -22,7 +22,8 @@
     <h2>Period tracker sample</h2>
     <button onclick="postMessage('get_access_token')">Get Info</button>
     <button onclick="postMessage('refresh_access_token')">Refresh Access Token</button>
-    <button onclick="closeMicroApp()">Close Micro App</button>
+    <button onclick="closeMicroApp()">Close Android Micro App</button>
+    <button onclick="closeiOSMicroApp()">Close iOS Micro App</button>
     <p id="demo"></p>
     <script>
         function postMessage(operation) {
@@ -58,6 +59,23 @@
                     "callback": "JSMethodToSendResponse"
                 }
                 JSToNativeBridge.callToNative(JSON.stringify(json));
+            } catch (err) {
+                let x = document.getElementsByTagName("h3")[0];
+                x.innerHTML = "error" + err;
+            }
+        }
+        function closeiOSMicroApp() {
+            try {
+                let requestCode = "lifecycle.finish";
+                let json = {
+                    "request_id": "123654",
+                    "request_body": {
+                        "request_code": requestCode,
+                        "data": {}
+                    },
+                    "callback": "JSMethodToSendResponse"
+                }
+                window.webkit.messageHandlers.JSToNativeBridge.postMessage(JSON.stringify(json));
             } catch (err) {
                 let x = document.getElementsByTagName("h3")[0];
                 x.innerHTML = "error" + err;
